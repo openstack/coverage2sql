@@ -1,12 +1,12 @@
 ===============================
-coverage2sql
+coverage2sql README
 ===============================
 
 Command to Read a coverage file and put the data in a SQL database
 
-Please feel here a long description which must be at least 3 lines wrapped on
-80 cols, so that distribution package maintainers can use it in their packages.
-Note that this is a hard requirement.
+coverage2sql is a tool for storing data of test coverage into a SQL database.
+With using this tool, you can store time series coverage data and analyze it
+if your coverage rate is down.
 
 * Free software: Apache license
 * Documentation: http://docs.openstack.org/developer/coverage2sql
