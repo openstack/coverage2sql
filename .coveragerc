@@ -1,0 +1,7 @@
+[run]
+branch = True
+source = coverage2sql
+omit = coverage2sql/openstack/*
+
+[report]
+ignore_errors = True
