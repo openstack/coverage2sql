@@ -25,6 +25,7 @@ def upgrade():
                     sa.Column('report_time_microsecond', sa.Integer(),
                               default=0),
                     mysql_engine='InnoDB')
+    op.create_index('ix_project_name', 'coverages', ['project_name'])
 
 
 def downgrade():
