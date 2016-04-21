@@ -17,20 +17,23 @@ import copy
 import sys
 
 from oslo_config import cfg
-# from oslo_db import options
+from oslo_db import options
 from pbr import version
 from stevedore import enabled
 
 from coverage2sql.db import api
 # from coverage2sql import exceptions
-# from coverage2sql import read_subunit as subunit
+from coverage2sql import read_coverage as coverage
 
 CONF = cfg.CONF
 CONF.import_opt('verbose', 'coverage2sql.db.api')
 
 SHELL_OPTS = [
-    cfg.MultiStrOpt('coverage_files', positional=True,
-                    help='list of coverage files to put into the database'),
+    cfg.StrOpt('project_name', positional=False,
+                    help='project name of the coverage files'),
+    cfg.StrOpt('coverage_file', positional=False,
+                    help='A coverage file to put into the database'),
+    cfg.StrOpt('connection'),
 ]
 
 _version_ = version.VersionInfo('coverage2sql').version_string()
@@ -51,25 +54,25 @@ def list_opts():
 
 
 def parse_args(argv, default_config_files=None):
-    # cfg.CONF.register_cli_opts(options.database_opts, group='database')
+    cfg.CONF.register_cli_opts(options.database_opts, group='database')
     cfg.CONF(argv[1:], project='coverage2sql', version=_version_,
              default_config_files=default_config_files)
 
 
-def process_results(results):
-    print(results)
+def process_results(project_name=".", coverage_rate=0.0):
+    session = api.get_session()
+    api.create_coverage(project_name, coverage_rate)
+    session.close()
 
 
 def main():
     cli_opts()
 
     parse_args(sys.argv)
-    if CONF.coverage_files:
-        print("From file:")
-        process_results("FIXME")  # FIXME
-    else:
-        print("From stdin:")
-        process_results("FIXME")  # FIXME
+    project_name = CONF.project_name
+    cov = coverage.ReadCoverage(CONF.coverage_file)
+    coverage_rate = cov.get_coverage_rate()
+    process_results(project_name, coverage_rate)
 
 
 if __name__ == "__main__":

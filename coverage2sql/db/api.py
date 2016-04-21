@@ -16,7 +16,7 @@ import collections
 import datetime
 
 from oslo_config import cfg
-#from oslo_db.sqlalchemy import session as db_session
+from oslo_db.sqlalchemy import session as db_session
 import six
 import sqlalchemy
 from sqlalchemy.engine.url import make_url
@@ -25,7 +25,6 @@ import logging
 
 from coverage2sql.db import models
 #from coverage2sql import exceptions
-#from coverage2sql import read_coverage
 
 CONF = cfg.CONF
 CONF.register_cli_opt(cfg.BoolOpt('verbose', short='v', default=False,
@@ -68,3 +67,35 @@ def get_session(autocommit=True, expire_on_commit=False):
         logging.getLogger('sqlalchemy.engine').setLevel(logging.INFO)
 
     return session
+
+
+def create_coverage(project_name, coverage_rate=0.0, report_time=None,
+                    session=None):
+    """Create a new coverage record in the database.
+
+    This method is used to add a new coverage in the database.
+    It tracks the coverage history.
+
+    :param str project_name: project_name e.g. openstack/tempest
+    :param float coverage_rate: coverage_rate defaults to 0
+    :param datetime.Datetime report_time: when the coverage was collected
+                                          defaults to None
+    :param session: optional session object if one isn't provided a new session
+                    will be acquired for the duration of this operation
+    :return: The coverage object stored in the DB
+    :rtype: coverage2sql.models.Coverage
+    """
+    coverage = models.Coverage()
+    coverage.project_name = project_name
+    coverage.coverage_rate = coverage_rate
+    if report_time:
+        report_time = report_time.replace(tzinfo=None)
+        report_time_microsecond = report_time.microsecond
+    else:
+        report_time_microsecond = None
+    coverage.report_time = report_time
+    coverage.report_time_microsecond = report_time_microsecond
+    session = session or get_session()
+    with session.begin():
+        session.add(coverage)
+    return coverage
