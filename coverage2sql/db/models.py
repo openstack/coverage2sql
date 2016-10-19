@@ -54,5 +54,6 @@ class Coverage(BASE, CoverageBase):
     project_name = sa.Column(sa.String(256),
                              nullable=False)
     coverage_rate = sa.Column(sa.Float())
+    test_type = sa.Column(sa.String(256), nullable=False, default='py27')
     report_time = sa.Column(sa.DateTime(), default=datetime.datetime.utcnow())
     report_time_microsecond = sa.Column(sa.Integer(), default=0)

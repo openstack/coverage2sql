@@ -29,7 +29,7 @@ CONF = cfg.CONF
 CONF.import_opt('verbose', 'coverage2sql.db.api')
 
 SHELL_OPTS = [
-    cfg.StrOpt('project_name', positional=False,
+    cfg.StrOpt('project_name', positional=True, required=True,
                     help='project name of the coverage files'),
     cfg.StrOpt('coverage_file', positional=False,
                     help='A coverage file to put into the database'),
