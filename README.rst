@@ -13,7 +13,51 @@ if your coverage rate is down.
 * Source: http://git.openstack.org/cgit/openstack/coverage2sql
 * Bugs: http://bugs.launchpad.net/coverage2sql
 
+Usage
+=====
+
+DB Setup
+--------
+
+The usage of coverage2sql is split into 2 stages. First you need to prepare a
+database with the proper schema; coverage2sql-db-manage should be used to do
+this. The utility requires db connection info which can be specified on the
+command or with a config file. Obviously the sql connector type, user,
+password, address, and database name should be specific to your environment.
+coverage2sql-db-manage will use alembic to setup the db schema. You can run the
+db migrations with the command::
+
+    coverage2sql-db-manage --database-connection mysql://coverage:pass@127.0.0.1/coverage upgrade head
+
+or with a config file::
+
+    coverage2sql-db-manage --config-file etc/coverage2sql.conf upgrade head
+
+This will bring the DB schema up to the latest version for coverage2sql.
+
+.. _coverage2sql:
+
+coverage2sql
+------------
+
+Once you have a database setup with the proper database schema you can then use
+the coverage2sql command to populate the database with data from your test
+coverage file. coverage2sql takes in a `.coverage file`_ through by passing it
+file paths as positional arguments to the script at this moment.
+
+.. _.coverage file: http://coverage.readthedocs.io/en/latest/cmd.html#data-file
+
+There are several options for running coverage2sql, they can be listed with::
+
+    coverage2sql --help
+
+The only required option is --database-connection. The options can either be
+used on the CLI, or put in a config file. If a config file is used you need to
+specify the location on the CLI.
+
+
+
 Features
 --------
 
-* TODO
+* TODO: .coverage file through stdin
