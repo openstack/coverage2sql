@@ -70,8 +70,12 @@ def main():
 
     parse_args(sys.argv)
     project_name = CONF.project_name
-    cov = coverage.ReadCoverage(CONF.coverage_file)
-    coverage_rate = cov.get_coverage_rate()
+    if CONF.coverage_file:
+        cov = coverage.ReadCoverage(CONF.coverage_file)
+        coverage_rate = cov.get_coverage_rate()
+    else:
+        raise NotImplementedError()
+        #cov = coverage.ReadCoverage(sys.stdin)
     process_results(project_name, coverage_rate)
 
 
