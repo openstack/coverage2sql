@@ -16,9 +16,7 @@ import coverage
 
 
 class DevNull(object):
-    """
-    A file like '/dev/null'
-    """
+    """A file like '/dev/null' """
     def write(self, *args, **kwargs):
         pass
 

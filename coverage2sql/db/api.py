@@ -12,19 +12,14 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
-import collections
-import datetime
-
 from oslo_config import cfg
 from oslo_db.sqlalchemy import session as db_session
 import six
-import sqlalchemy
 from sqlalchemy.engine.url import make_url
 
 import logging
 
 from coverage2sql.db import models
-#from coverage2sql import exceptions
 
 CONF = cfg.CONF
 CONF.register_cli_opt(cfg.BoolOpt('verbose', short='v', default=False,

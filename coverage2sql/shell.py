@@ -19,10 +19,8 @@ import sys
 from oslo_config import cfg
 from oslo_db import options
 from pbr import version
-from stevedore import enabled
 
 from coverage2sql.db import api
-# from coverage2sql import exceptions
 from coverage2sql import read_coverage as coverage
 
 CONF = cfg.CONF
@@ -30,9 +28,9 @@ CONF.import_opt('verbose', 'coverage2sql.db.api')
 
 SHELL_OPTS = [
     cfg.StrOpt('project_name', positional=True, required=True,
-                    help='project name of the coverage files'),
+               help='project name of the coverage files'),
     cfg.StrOpt('coverage_file', positional=True,
-                    help='A coverage file to put into the database'),
+               help='A coverage file to put into the database'),
     cfg.StrOpt('connection'),
 ]
 
@@ -75,7 +73,7 @@ def main():
         coverage_rate = cov.get_coverage_rate()
     else:
         raise NotImplementedError()
-        #cov = coverage.ReadCoverage(sys.stdin)
+        # cov = coverage.ReadCoverage(sys.stdin)
     process_results(project_name, coverage_rate)
 
 

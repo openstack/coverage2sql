@@ -21,7 +21,6 @@ from alembic import config as alembic_config
 from alembic import script as alembic_script
 from alembic import util as alembic_util
 from oslo_config import cfg
-#from oslo_db import options
 
 from coverage2sql.db import api as db_api
 
@@ -44,7 +43,6 @@ MIGRATION_OPTS = [
 ]
 
 CONF = cfg.CONF
-#CONF.register_cli_opts(options.database_opts, group='database')
 CONF.register_cli_opts(MIGRATION_OPTS)
 CONF.import_opt('verbose', 'coverage2sql.db.api')
 
@@ -97,7 +95,7 @@ def validate_head_file(config):
 
     head_path = os.path.join(script.versions, HEAD_FILENAME)
     if (os.path.isfile(head_path) and
-        open(head_path).read().strip() == script.get_current_head()):
+       open(head_path).read().strip() == script.get_current_head()):
         return
     else:
         alembic_util.err('HEAD file does not match migration timeline head')

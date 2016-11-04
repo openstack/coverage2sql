@@ -13,10 +13,7 @@
 # under the License.
 
 import datetime
-import uuid
 
-#from oslo_db.sqlalchemy import models  # noqa
-import six
 import sqlalchemy as sa
 from sqlalchemy.ext import declarative
 
