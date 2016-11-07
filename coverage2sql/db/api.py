@@ -12,10 +12,11 @@
 # License for the specific language governing permissions and limitations
 # under the License.
 
+
 from oslo_config import cfg
-from oslo_db.sqlalchemy import session as db_session
-import six
+from sqlalchemy import create_engine
 from sqlalchemy.engine.url import make_url
+from sqlalchemy.orm import sessionmaker
 
 import logging
 
@@ -27,21 +28,21 @@ CONF.register_cli_opt(cfg.BoolOpt('verbose', short='v', default=False,
                                        'SQL statements'))
 
 DAY_SECONDS = 60 * 60 * 24
+Session = None
 
-_facades = {}
 
+def setup():
+    global engine
+    db_uri = make_url(CONF.database.connection)
+    # db_backend = db_uri.get_backend_name()
 
-def _create_facade_lazily():
-    global _facades
-    db_url = make_url(CONF.database.connection)
-    db_backend = db_url.get_backend_name()
-    facade = _facades.get(db_backend)
-    if facade is None:
-        facade = db_session.EngineFacade(
-            CONF.database.connection,
-            **dict(six.iteritems(CONF.database)))
-        _facades[db_backend] = facade
-    return facade
+    pool_size = CONF.database.max_pool_size
+    pool_recycle = CONF.database.idle_timeout
+    engine = create_engine(db_uri,
+                           pool_size=pool_size,
+                           pool_recycle=pool_recycle)
+    global Session
+    Session = sessionmaker(bind=engine)
 
 
 def get_session(autocommit=True, expire_on_commit=False):
@@ -50,9 +51,11 @@ def get_session(autocommit=True, expire_on_commit=False):
     :param bool autocommit: Enable autocommit mode for the session.
     :param bool expire_on_commit: Expire the session on commit defaults False.
     """
-    facade = _create_facade_lazily()
-    session = facade.get_session(autocommit=autocommit,
-                                 expire_on_commit=expire_on_commit)
+    global Session
+    if not Session:
+        setup()
+    session = Session(autocommit=autocommit,
+                      expire_on_commit=expire_on_commit)
 
     # if --verbose was specified, turn on SQL logging
     # note that this is done after the session has been initialized so that
