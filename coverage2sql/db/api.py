@@ -68,7 +68,7 @@ def get_session(autocommit=True, expire_on_commit=False):
 
 
 def create_coverage(project_name, coverage_rate=0.0, report_time=None,
-                    session=None):
+                    test_type='py27', session=None):
     """Create a new coverage record in the database.
 
     This method is used to add a new coverage in the database.
@@ -86,6 +86,7 @@ def create_coverage(project_name, coverage_rate=0.0, report_time=None,
     coverage = models.Coverage()
     coverage.project_name = project_name
     coverage.coverage_rate = coverage_rate
+    coverage.test_type = test_type
     if report_time:
         report_time = report_time.replace(tzinfo=None)
         report_time_microsecond = report_time.microsecond
