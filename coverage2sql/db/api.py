@@ -38,9 +38,12 @@ def setup():
 
     pool_size = CONF.database.max_pool_size
     pool_recycle = CONF.database.idle_timeout
-    engine = create_engine(db_uri,
-                           pool_size=pool_size,
-                           pool_recycle=pool_recycle)
+    if not pool_size and not pool_recycle:
+        engine = create_engine(db_uri)
+    else:
+        engine = create_engine(db_uri,
+                               pool_size=pool_size,
+                               pool_recycle=pool_recycle)
     global Session
     Session = sessionmaker(bind=engine)
 

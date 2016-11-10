@@ -17,7 +17,6 @@ import copy
 import sys
 
 from oslo_config import cfg
-from oslo_db import options
 from pbr import version
 
 from coverage2sql.db import api
@@ -31,15 +30,20 @@ SHELL_OPTS = [
                help='project name of the coverage files'),
     cfg.StrOpt('coverage_file', positional=True,
                help='A coverage file to put into the database'),
-    cfg.StrOpt('connection'),
+]
+
+DATABASE_OPTS = [
+    cfg.StrOpt('connection', default=None),
+    cfg.IntOpt('max_pool_size', default=20),
+    cfg.IntOpt('idle_timeout', default=3600),
 ]
 
 _version_ = version.VersionInfo('coverage2sql').version_string()
 
 
 def cli_opts():
-    for opt in SHELL_OPTS:
-        CONF.register_cli_opt(opt)
+    CONF.register_cli_opts(SHELL_OPTS)
+    CONF.register_cli_opts(DATABASE_OPTS, 'database')
 
 
 def list_opts():
@@ -51,10 +55,9 @@ def list_opts():
     return [('DEFAULT', copy.deepcopy(SHELL_OPTS))]
 
 
-def parse_args(argv, default_config_files=None):
-    cfg.CONF.register_cli_opts(options.database_opts, group='database')
-    cfg.CONF(argv[1:], project='coverage2sql', version=_version_,
-             default_config_files=default_config_files)
+def parse_args(argv):
+    CONF(argv[1:], project='coverage2sql', version=_version_)
+    CONF(default_config_files=[CONF.config_file])
 
 
 def process_results(project_name=".", coverage_rate=0.0):

@@ -27,13 +27,21 @@ down_revision = None
 branch_labels = None
 depends_on = None
 
+from alembic import context
 from alembic import op
 import sqlalchemy as sa
 
 
 def upgrade():
+    migration_context = context.get_context()
+    if migration_context.dialect.name == 'sqlite':
+        id_type = sa.Integer
+    else:
+        id_type = sa.BigInteger
+
     op.create_table('coverages',
-                    sa.Column('id', sa.BigInteger(), primary_key=True),
+                    sa.Column('id', id_type, autoincrement=True,
+                              primary_key=True),
                     sa.Column('project_name', sa.String(256), nullable=False),
                     sa.Column('coverage_rate', sa.Float()),
                     sa.Column('report_time', sa.DateTime()),
