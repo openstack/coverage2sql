@@ -46,13 +46,13 @@ class Database(fix.Fixture):
             db_test_utils.run_migration("head")
 
     def cleanup(self):
-        engine = db_api.get_session().get_bind()
+        engine = db_api.engine
         engine.dispose()
         pass
 
     def reset(self):
         self._cache_schema()
-        engine = db_api.get_session().get_bind()
+        engine = db_api.engine
         engine.dispose()
         engine.connect()
 

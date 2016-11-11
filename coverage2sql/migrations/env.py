@@ -74,7 +74,7 @@ def run_migrations_online():
     and associate a connection with the context.
 
     """
-    connectable = db_api.get_session().get_bind()
+    connectable = db_api.engine
 
     with connectable.connect() as connection:
         context.configure(

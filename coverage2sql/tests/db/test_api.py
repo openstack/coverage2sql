@@ -47,3 +47,21 @@ class TestDatabaseAPI(base.TestCase):
         cov = api.create_coverage('foo_project')
         self.assertTrue(cov is not None)
         self.assertEqual(cov.project_name, 'foo_project')
+
+    def test_get_coverage_all(self):
+        api.create_coverage('foo1_project')
+        api.create_coverage('foo2_project')
+        covs = api.get_coverage()
+        self.assertTrue(covs is not None)
+        self.assertEqual(len(covs), 2)
+        names = [n.project_name for n in covs]
+        self.assertIn(needle='foo1_project', haystack=names)
+        self.assertIn(needle='foo2_project', haystack=names)
+
+    def test_get_coverage_with_projenct_name(self):
+        api.create_coverage('foo1_project')
+        api.create_coverage('foo2_project')
+        covs = api.get_coverage(project_name='foo1_project')
+        self.assertTrue(covs is not None)
+        self.assertEqual(len(covs), 1)
+        self.assertEqual(covs[0].project_name, 'foo1_project')

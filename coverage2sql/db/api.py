@@ -29,6 +29,7 @@ CONF.register_cli_opt(cfg.BoolOpt('verbose', short='v', default=False,
 
 DAY_SECONDS = 60 * 60 * 24
 Session = None
+engine = None
 
 
 def setup():
@@ -55,8 +56,7 @@ def get_session(autocommit=True, expire_on_commit=False):
     :param bool expire_on_commit: Expire the session on commit defaults False.
     """
     global Session
-    if not Session:
-        setup()
+    setup()
     session = Session(autocommit=autocommit,
                       expire_on_commit=expire_on_commit)
 
@@ -101,3 +101,23 @@ def create_coverage(project_name, coverage_rate=0.0, report_time=None,
     with session.begin():
         session.add(coverage)
     return coverage
+
+
+def get_coverage(project_name=None, test_type=None, session=None):
+    """Get new coverage records in the database.
+
+    This method is used to get coverage records in the database. The records
+    are order by report_time.
+    :param str project_name: project_name e.g. openstack/tempest
+    :param str test_type: test_type e.g. py35
+    :return: The coverage objects from the DB
+    :rtype: list
+    """
+
+    session = session or get_session()
+    covs = session.query(models.Coverage)
+    if project_name:
+        covs = covs.filter_by(project_name=project_name)
+    if test_type:
+        covs = covs.filter_by(test_type=test_type)
+    return covs.order_by(models.Coverage.report_time).all()
