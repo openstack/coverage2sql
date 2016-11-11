@@ -1,0 +1,5 @@
+---
+prelude: >
+    Initial version of coverage2sql
+features:
+  - Add a create_coverage record api
