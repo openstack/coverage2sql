@@ -76,7 +76,6 @@ def main():
         coverage_rate = cov.get_coverage_rate()
     else:
         raise NotImplementedError()
-        # cov = coverage.ReadCoverage(sys.stdin)
     process_results(project_name, coverage_rate)
 
 
