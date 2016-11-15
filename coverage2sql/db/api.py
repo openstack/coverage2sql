@@ -35,7 +35,6 @@ engine = None
 def setup():
     global engine
     db_uri = make_url(CONF.database.connection)
-    # db_backend = db_uri.get_backend_name()
 
     pool_size = CONF.database.max_pool_size
     pool_recycle = CONF.database.idle_timeout
