@@ -81,6 +81,7 @@ def create_coverage(project_name, coverage_rate=0.0, report_time=None,
     :param float coverage_rate: coverage_rate defaults to 0
     :param datetime.Datetime report_time: when the coverage was collected
                                           defaults to None
+    :param str test_type: test_type like a task name of tox e.g. py27
     :param session: optional session object if one isn't provided a new session
                     will be acquired for the duration of this operation
     :return: The coverage object stored in the DB

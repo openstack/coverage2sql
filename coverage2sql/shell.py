@@ -30,6 +30,8 @@ SHELL_OPTS = [
                help='project name of the coverage files'),
     cfg.StrOpt('coverage_file', positional=True,
                help='A coverage file to put into the database'),
+    cfg.StrOpt('test-type', default='py27',
+               help='test_type like a task name of tox e.g. py27'),
 ]
 
 DATABASE_OPTS = [
@@ -62,7 +64,7 @@ def parse_args(argv):
 
 def process_results(project_name=".", coverage_rate=0.0):
     session = api.get_session()
-    api.create_coverage(project_name, coverage_rate)
+    api.create_coverage(project_name, coverage_rate, test_type=CONF.test_type)
     session.close()
 
 
