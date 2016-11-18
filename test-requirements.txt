@@ -18,3 +18,4 @@ psycopg2
 os-testr
 reno>=0.1.1 # Apache2
 oslo.concurrency>=3.5.0
+six>=1.5.2
