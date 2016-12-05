@@ -57,9 +57,9 @@ def list_opts():
     return [('DEFAULT', copy.deepcopy(SHELL_OPTS))]
 
 
-def parse_args(argv):
-    CONF(argv[1:], project='coverage2sql', version=_version_)
-    CONF(default_config_files=[CONF.config_file])
+def parse_args(argv, default_config_files=None):
+    CONF(argv[1:], project='coverage2sql', version=_version_,
+         default_config_files=default_config_files)
 
 
 def process_results(project_name=".", coverage_rate=0.0):
