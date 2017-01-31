@@ -64,9 +64,15 @@ The only required option is --database-connection. The options can either be
 used on the CLI, or put in a config file. If a config file is used you need to
 specify the location on the CLI.
 
+TODO
+----
 
+To see the TODO, go to the launchpad site:
 
-Features
---------
+* `https://bugs.launchpad.net/coverage2sql <https://bugs.launchpad.net/coverage2sql>`_
+* `https://blueprints.launchpad.net/coverage2sql <https://blueprints.launchpad.net/coverage2sql>`_
 
-* TODO: .coverage file through stdin
+ChangeLog
+---------
+
+To see the release notes go here: `http://docs.openstack.org/releasenotes/coverage2sql/ <http://docs.openstack.org/releasenotes/coverage2sql/>`_
