@@ -30,15 +30,11 @@ DB Setup
 
 The usage of coverage2sql is split into 2 stages. First you need to prepare a
 database with the proper schema; coverage2sql-db-manage should be used to do
-this. The utility requires db connection info which can be specified on the
-command or with a config file. Obviously the sql connector type, user,
+this. The utility requires db connection info which can be specified with a
+config file. Obviously the sql connector type, user,
 password, address, and database name should be specific to your environment.
 coverage2sql-db-manage will use alembic to setup the db schema. You can run the
-db migrations with the command::
-
-    coverage2sql-db-manage --database-connection mysql://coverage:pass@127.0.0.1/coverage upgrade head
-
-or with a config file::
+db migrations with a config file::
 
     coverage2sql-db-manage --config-file etc/coverage2sql.conf upgrade head
 
