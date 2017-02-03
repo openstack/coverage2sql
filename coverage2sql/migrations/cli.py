@@ -23,6 +23,7 @@ from alembic import util as alembic_util
 from oslo_config import cfg
 
 from coverage2sql.db import api as db_api
+from coverage2sql import shell
 
 HEAD_FILENAME = 'HEAD'
 
@@ -177,7 +178,9 @@ def main():
     config.set_main_option('script_location',
                            'coverage2sql:migrations')
     config.coverage2sql_config = CONF
+    CONF.register_cli_opts(shell.DATABASE_OPTS, group='database')
     CONF()
+    db_api.get_session()
     CONF.command.func(config, CONF.command.name)
 
 if __name__ == "__main__":
