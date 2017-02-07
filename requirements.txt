@@ -6,3 +6,5 @@ pbr>=1.6
 SQLAlchemy>=0.8.2
 alembic>=0.4.1
 oslo.config>=1.4.0.0a3
+coverage>=4.3
+xmltodict>=0.10.1  # MIT

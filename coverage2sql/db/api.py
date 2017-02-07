@@ -70,8 +70,8 @@ def get_session(autocommit=True, expire_on_commit=False):
     return session
 
 
-def create_coverage(project_name, coverage_rate=0.0, report_time=None,
-                    test_type='py27', session=None):
+def create_coverage(project_name, coverage_rate=0.0, rates=[],
+                    report_time=None, test_type='py27', session=None):
     """Create a new coverage record in the database.
 
     This method is used to add a new coverage in the database.
@@ -98,10 +98,39 @@ def create_coverage(project_name, coverage_rate=0.0, report_time=None,
         report_time_microsecond = None
     coverage.report_time = report_time
     coverage.report_time_microsecond = report_time_microsecond
+
     session = session or get_session()
     with session.begin():
         session.add(coverage)
+
     return coverage
+
+
+def add_file_rates(coverage_id, rates=[], session=None):
+    """Add rates a specific coverage.
+
+    This method is used to add rate records in the database.
+    It tracks the coverage history by individual files.
+
+    :param int coverage_id: coverage_id
+    :param list rates: rates dict list which has
+                       e.g. [{'filename': 'foo', 'line-rate': '0.1'}, ...]
+    :param session: optional session object if one isn't provided a new session
+                    will be acquired for the duration of this operation
+    :return: The list of created files objects
+    :rtype: coverage2sql.models.File
+    """
+    session = session or get_session()
+    files = []
+    with session.begin():
+        for r in rates:
+            f = models.File()
+            f.coverage_id = coverage_id
+            f.filename = r['filename']
+            f.line_rate = r['line-rate']
+            session.add(f)
+            files.append(f)
+    return files
 
 
 def get_coverage(project_name=None, test_type=None, session=None):

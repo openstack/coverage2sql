@@ -44,6 +44,10 @@ class TestMain(base.TestCase):
             'get_coverage_rate')
         fake_read_coverage.get_coverage_rate.return_value = (
             fake_get_coverage_rate)
+        fake_read_coverage.get_rates_by_files = mock.MagicMock(
+            'get_rates_by_files')
+        fake_read_coverage.get_rates_by_files.return_value = (
+            {'filename': 'foo/bar.py', 'line-rate': '0.99'})
         read_coverage_mock.return_value = fake_read_coverage
         shell.main()
         read_coverage_mock.assert_called_with(mock.ANY)

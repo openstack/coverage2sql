@@ -1,4 +1,4 @@
-# Copyright (c) 2014 Hewlett-Packard Development Company, L.P.
+# Copyright (c) 2017 Hewlett Packard Enterprise Development LP
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -13,17 +13,17 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-"""Add coverages table
+"""Add files table
 
-Revision ID: 52dfb338f74e
-Revises:
-Create Date: 2016-04-19 18:16:52.780046
+Revision ID: 79dead6f7c26
+Revises: cb0e61ce633e
+Create Date: 2017-02-07 17:57:28.777311
 
 """
 
 # revision identifiers, used by Alembic.
-revision = '52dfb338f74e'
-down_revision = None
+revision = '79dead6f7c26'
+down_revision = 'cb0e61ce633e'
 branch_labels = None
 depends_on = None
 
@@ -39,17 +39,16 @@ def upgrade():
     else:
         id_type = sa.BigInteger
 
-    op.create_table('coverages',
+    op.create_table('files',
                     sa.Column('id', id_type, autoincrement=True,
                               primary_key=True),
-                    sa.Column('project_name', sa.String(256), nullable=False),
-                    sa.Column('coverage_rate', sa.Float()),
-                    sa.Column('report_time', sa.DateTime()),
-                    sa.Column('report_time_microsecond', sa.Integer(),
-                              default=0),
+                    sa.Column('coverage_id', id_type, nullable=False),
+                    sa.Column('filename', sa.String(256), nullable=False),
+                    sa.Column('line_rate', sa.Float()),
                     mysql_engine='InnoDB')
-    op.create_index('ix_project_name', 'coverages', ['project_name'])
+    op.create_index('ix_class_coverage_id', 'files', ['coverage_id'])
+    op.create_index('ix_filename', 'files', ['filename'])
 
 
 def downgrade():
-    op.drop_table('classes')
+    op.drop_table('files')

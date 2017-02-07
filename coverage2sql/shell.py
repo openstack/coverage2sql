@@ -62,9 +62,11 @@ def parse_args(argv, default_config_files=None):
          default_config_files=default_config_files)
 
 
-def process_results(project_name=".", coverage_rate=0.0):
+def process_results(project_name=".", coverage_rate=0.0, rates=[]):
     session = api.get_session()
-    api.create_coverage(project_name, coverage_rate, test_type=CONF.test_type)
+    cov = api.create_coverage(project_name, coverage_rate, rates,
+                              test_type=CONF.test_type, session=session)
+    api.add_file_rates(cov.id, rates, session)
     session.close()
 
 
@@ -76,9 +78,10 @@ def main():
     if CONF.coverage_file:
         cov = coverage.ReadCoverage(CONF.coverage_file)
         coverage_rate = cov.get_coverage_rate()
+        rates = cov.get_rates_by_files()
     else:
         raise NotImplementedError()
-    process_results(project_name, coverage_rate)
+    process_results(project_name, coverage_rate, rates)
 
 
 if __name__ == "__main__":

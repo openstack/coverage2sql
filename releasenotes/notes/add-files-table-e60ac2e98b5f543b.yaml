@@ -1,0 +1,4 @@
+---
+features:
+  - |
+    Add 'Files' table to store individual coverage data by file.

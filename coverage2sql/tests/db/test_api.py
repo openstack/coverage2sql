@@ -65,3 +65,14 @@ class TestDatabaseAPI(base.TestCase):
         self.assertTrue(covs is not None)
         self.assertEqual(len(covs), 1)
         self.assertEqual(covs[0].project_name, 'foo1_project')
+
+    def test_add_file_rates(self):
+        rates = []
+        rates.append({'filename': 'foo/bar0', 'line-rate': '0'})
+        rates.append({'filename': 'foo/bar1', 'line-rate': '1'})
+        rates.append({'filename': 'foo/bar2', 'line-rate': '0.92'})
+        files = api.add_file_rates(1, rates)
+        self.assertEqual(3, len(files))
+        for r, f in zip(rates, files):
+            self.assertEqual(r['filename'], f.filename)
+            self.assertEqual(r['line-rate'], f.line_rate)

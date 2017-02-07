@@ -54,3 +54,17 @@ class Coverage(BASE, CoverageBase):
     test_type = sa.Column(sa.String(256), nullable=False, default='py27')
     report_time = sa.Column(sa.DateTime(), default=datetime.datetime.utcnow())
     report_time_microsecond = sa.Column(sa.Integer(), default=0)
+
+
+class File(BASE, CoverageBase):
+    __tablename__ = 'files'
+    __table_args__ = (sa.Index('ix_file_coverage_id', 'coverage_id'),
+                      sa.Index('ix_filename', 'filename'))
+    id = sa.Column(sa.BigInteger, primary_key=True)
+    coverage_id = sa.Column(sa.BigInteger, nullable=False)
+    filename = sa.Column(sa.String(256), nullable=False)
+    line_rate = sa.Column(sa.Float())
+    coverage = sa.orm.relationship(Coverage,
+                                   backref=sa.orm.backref('file_coverage'),
+                                   foreign_keys=coverage_id,
+                                   primaryjoin=coverage_id == Coverage.id)
