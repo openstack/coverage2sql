@@ -38,7 +38,8 @@ def setup():
 
     pool_size = CONF.database.max_pool_size
     pool_recycle = CONF.database.idle_timeout
-    if not pool_size and not pool_recycle:
+    if db_uri.get_backend_name() == 'sqlite' or (not pool_size
+                                                 and not pool_recycle):
         engine = create_engine(db_uri)
     else:
         engine = create_engine(db_uri,
