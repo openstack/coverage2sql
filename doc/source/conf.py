@@ -15,8 +15,6 @@
 import os
 import sys
 
-import openstackdocstheme
-
 sys.path.insert(0, os.path.abspath('../..'))
 # -- General configuration ----------------------------------------------------
 
@@ -25,8 +23,16 @@ sys.path.insert(0, os.path.abspath('../..'))
 extensions = [
     'sphinx.ext.autodoc',
     #'sphinx.ext.intersphinx',
-    'oslosphinx'
+    'openstackdocstheme'
 ]
+
+# openstackdocstheme options
+repository_name = 'openstack/coverage2sql'
+bug_project = 'coverage2sql'
+bug_tag = ''
+
+# Must set this variable to include year, month, day, hours, and minutes.
+html_last_updated_fmt = '%Y-%m-%d %H:%M'
 
 # autodoc generation is a bit aggressive and a nuisance when doing heavy
 # text edit cycles.
@@ -56,7 +62,7 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  Major themes that come with
 # Sphinx are currently 'default' and 'sphinxdoc'.
-html_theme_path = [openstackdocstheme.get_html_theme_path()]
+#html_theme_path = [openstackdocstheme.get_html_theme_path()]
 html_theme = 'openstackdocs'
 # html_static_path = ['static']
 
