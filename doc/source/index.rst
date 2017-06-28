@@ -1,22 +1,27 @@
-.. coverage2sql documentation master file, created by
-   sphinx-quickstart on Tue Jul  9 22:26:36 2013.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
-
 ========================================================
 Welcome to coverage2sql's documentation!
 ========================================================
 
-Contents
-========
+.. image:: http://governance.openstack.org/badges/coverage2sql.svg
+    :target: http://governance.openstack.org/reference/tags/index.html
+
+Command to Read a coverage file and put the data in a SQL database
+
+coverage2sql is a tool for storing data of test coverage into a SQL database.
+With using this tool, you can store time series coverage data and analyze it
+if your coverage rate is down.
+
+* Free software: Apache license
+* Documentation: http://docs.openstack.org/developer/coverage2sql
+* Source: http://git.openstack.org/cgit/openstack/coverage2sql
+* Bugs: http://bugs.launchpad.net/coverage2sql
 
 .. toctree::
    :maxdepth: 2
 
-   readme
-   installation
-   usage
-   contributing
+   install/index
+   user/index
+   contributor/index
 
 Indices and tables
 ==================
