@@ -18,9 +18,9 @@ With using this tool, you can store time series coverage data and analyze it
 if your coverage rate is down.
 
 * Free software: Apache license
-* Documentation: http://docs.openstack.org/developer/coverage2sql
-* Source: http://git.openstack.org/cgit/openstack/coverage2sql
-* Bugs: http://bugs.launchpad.net/coverage2sql
+* Documentation: https://docs.openstack.org/coverage2sql/latest/
+* Source: https://git.openstack.org/cgit/openstack/coverage2sql
+* Bugs: https://bugs.launchpad.net/coverage2sql
 
 Usage
 =====
@@ -65,10 +65,10 @@ TODO
 
 To see the TODO, go to the launchpad site:
 
-* `https://bugs.launchpad.net/coverage2sql <https://bugs.launchpad.net/coverage2sql>`_
-* `https://blueprints.launchpad.net/coverage2sql <https://blueprints.launchpad.net/coverage2sql>`_
+* https://bugs.launchpad.net/coverage2sql
+* https://blueprints.launchpad.net/coverage2sql
 
 ChangeLog
 ---------
 
-To see the release notes go here: `http://docs.openstack.org/releasenotes/coverage2sql/ <http://docs.openstack.org/releasenotes/coverage2sql/>`_
+To see the release notes go here: https://docs.openstack.org/releasenotes/coverage2sql/
