@@ -27,7 +27,7 @@ the coverage2sql command to populate the database with data from your test
 coverage file. coverage2sql takes in a `.coverage file`_ through by passing it
 file paths as positional arguments to the script at this moment.
 
-.. _.coverage file: http://coverage.readthedocs.io/en/latest/cmd.html#data-file
+.. _.coverage file: https://coverage.readthedocs.io/en/latest/cmd.html#data-file
 
 There are several options for running coverage2sql, they can be listed with::
 
@@ -55,4 +55,5 @@ To see the TODO, go to the launchpad site:
 ChangeLog
 ---------
 
-To see the release notes go here: `http://docs.openstack.org/releasenotes/coverage2sql/ <http://docs.openstack.org/releasenotes/coverage2sql/>`_
+To see the release notes go here:
+`https://docs.openstack.org/releasenotes/coverage2sql/ <https://docs.openstack.org/releasenotes/coverage2sql/>`_
