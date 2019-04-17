@@ -32,6 +32,7 @@ nosetests.xml
 .testrepository
 .stestr
 .venv
+*.db
 
 # Translations
 *.mo
