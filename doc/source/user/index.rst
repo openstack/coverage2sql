@@ -27,6 +27,10 @@ the coverage2sql command to populate the database with data from your test
 coverage file. coverage2sql takes in a `.coverage file`_ through by passing it
 file paths as positional arguments to the script at this moment.
 
+For example::
+
+    coverage2sql --config-file etc/coverage2sql.conf coverage2sql .coverage
+
 .. _.coverage file: https://coverage.readthedocs.io/en/latest/cmd.html#data-file
 
 There are several options for running coverage2sql, they can be listed with::
