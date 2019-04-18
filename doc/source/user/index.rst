@@ -33,9 +33,9 @@ There are several options for running coverage2sql, they can be listed with::
 
     coverage2sql --help
 
-The only required option is ``--database-connection``. The options can either be
-used on the CLI, or put in a config file. If a config file is used you need to
-specify the location on the CLI.
+The only required option is ``--database-connection``. The options can either
+be used on the CLI, or put in a config file. If a config file is used you need
+to specify the location on the CLI.
 
 Using in project
 ----------------
