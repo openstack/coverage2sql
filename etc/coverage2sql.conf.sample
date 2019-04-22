@@ -1,19 +1,5 @@
 [DEFAULT]
 
-#
-# From subunit2sql.shell
-#
-
-# Location of run artifacts (string value)
-#artifacts = <None>
-
-# Dict of metadata about the run(s) (dict value)
-#run_meta = <None>
-
-# list of subunit files to put into the database (multi valued)
-#subunit_files =
-
-
 [database]
 
 #
