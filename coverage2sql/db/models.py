@@ -46,7 +46,8 @@ class CoverageBase(object):
 
 class Coverage(BASE, CoverageBase):
     __tablename__ = 'coverages'
-    __table_args__ = (sa.Index('ix_project_name', 'project_name'), )
+    __table_args__ = (sa.Index('ix_project_name', 'project_name'),
+                      sa.Index('ix_coverage_metadata', 'coverage_metadata'))
     id = sa.Column(sa.BigInteger, primary_key=True)
     project_name = sa.Column(sa.String(256),
                              nullable=False)
@@ -54,6 +55,7 @@ class Coverage(BASE, CoverageBase):
     test_type = sa.Column(sa.String(256), nullable=False, default='py27')
     report_time = sa.Column(sa.DateTime(), default=datetime.datetime.utcnow())
     report_time_microsecond = sa.Column(sa.Integer(), default=0)
+    coverage_metadata = sa.Column(sa.String(256))
 
 
 class File(BASE, CoverageBase):

@@ -66,6 +66,15 @@ class TestDatabaseAPI(base.TestCase):
         self.assertEqual(len(covs), 1)
         self.assertEqual(covs[0].project_name, 'foo1_project')
 
+    def test_get_coverage_with_metadata(self):
+        api.create_coverage('foo1_project', coverage_metadata="foo,bar")
+        api.create_coverage('foo2_project', coverage_metadata="bar,foo")
+        covs = api.get_coverage(project_name='foo1_project')
+        self.assertTrue(covs is not None)
+        self.assertEqual(len(covs), 1)
+        self.assertEqual(covs[0].project_name, 'foo1_project')
+        self.assertEqual(covs[0].coverage_metadata, 'foo,bar')
+
     def test_add_file_rates(self):
         rates = []
         rates.append({'filename': 'foo/bar0', 'line-rate': '0'})

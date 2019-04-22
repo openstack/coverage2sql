@@ -71,7 +71,8 @@ def get_session(autocommit=True, expire_on_commit=False):
 
 
 def create_coverage(project_name, coverage_rate=0.0, rates=[],
-                    report_time=None, test_type='py27', session=None):
+                    report_time=None, test_type='py27',
+                    coverage_metadata=None, session=None):
     """Create a new coverage record in the database.
 
     This method is used to add a new coverage in the database.
@@ -82,6 +83,7 @@ def create_coverage(project_name, coverage_rate=0.0, rates=[],
     :param datetime.Datetime report_time: when the coverage was collected
                                           defaults to None
     :param str test_type: test_type like a task name of tox e.g. py27
+    :param str coverage_metadata: metadata for more additional data
     :param session: optional session object if one isn't provided a new session
                     will be acquired for the duration of this operation
     :return: The coverage object stored in the DB
@@ -91,6 +93,7 @@ def create_coverage(project_name, coverage_rate=0.0, rates=[],
     coverage.project_name = project_name
     coverage.coverage_rate = coverage_rate
     coverage.test_type = test_type
+    coverage.coverage_metadata = coverage_metadata
     if report_time:
         report_time = report_time.replace(tzinfo=None)
         report_time_microsecond = report_time.microsecond
@@ -98,6 +101,7 @@ def create_coverage(project_name, coverage_rate=0.0, rates=[],
         report_time_microsecond = None
     coverage.report_time = report_time
     coverage.report_time_microsecond = report_time_microsecond
+    coverage.coverage_metadata = coverage_metadata
 
     session = session or get_session()
     with session.begin():
