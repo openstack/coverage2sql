@@ -19,7 +19,7 @@ if your coverage rate is down.
 
 * Free software: Apache license
 * Documentation: https://docs.openstack.org/coverage2sql/latest/
-* Source: https://git.openstack.org/cgit/openstack/coverage2sql
+* Source: https://opendev.org/openstack/coverage2sql
 * Bugs: https://bugs.launchpad.net/coverage2sql
 * Release notes: https://docs.openstack.org/releasenotes/coverage2sql
 
