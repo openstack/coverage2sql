@@ -22,7 +22,6 @@ sys.path.insert(0, os.path.abspath('../..'))
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = [
     'sphinx.ext.autodoc',
-    #'sphinx.ext.intersphinx',
     'openstackdocstheme'
 ]
 
@@ -46,7 +45,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'coverage2sql'
-copyright = u'2016,2017 OpenStack Foundation'
+copyright = u'2016-2019 OpenStack Foundation'
 
 # If true, '()' will be appended to :func: etc. cross-reference text.
 add_function_parentheses = True
@@ -62,7 +61,7 @@ pygments_style = 'sphinx'
 
 # The theme to use for HTML and HTML Help pages.  Major themes that come with
 # Sphinx are currently 'default' and 'sphinxdoc'.
-#html_theme_path = [openstackdocstheme.get_html_theme_path()]
+# html_theme_path = [openstackdocstheme.get_html_theme_path()]
 html_theme = 'openstackdocs'
 # html_static_path = ['static']
 
@@ -80,4 +79,4 @@ latex_documents = [
 ]
 
 # Example configuration for intersphinx: refer to the Python standard library.
-#intersphinx_mapping = {'http://docs.python.org/': None}
+# intersphinx_mapping = {'http://docs.python.org/': None}
