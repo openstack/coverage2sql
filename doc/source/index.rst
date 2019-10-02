@@ -26,4 +26,10 @@ if your coverage rate is down.
 Indices and tables
 ==================
 
-* :ref:`search`
+.. only:: html
+
+  * :ref:`Coverage2SQL document search <search>`: Search the contents of this
+    document.
+
+* `OpenStack wide search <https://docs.openstack.org>`_: Search the wider
+  set of OpenStack documentation, including forums.

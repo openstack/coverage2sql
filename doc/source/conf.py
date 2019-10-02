@@ -22,6 +22,7 @@ sys.path.insert(0, os.path.abspath('../..'))
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom ones.
 extensions = [
     'sphinx.ext.autodoc',
+    'sphinxcontrib.rsvgconverter',
     'openstackdocstheme'
 ]
 
@@ -73,7 +74,7 @@ htmlhelp_basename = '%sdoc' % project
 # [howto/manual]).
 latex_documents = [
     ('index',
-     '%s.tex' % project,
+     'doc-%s.tex' % project,
      u'%s Documentation' % project,
      u'OpenStack Foundation', 'manual'),
 ]
