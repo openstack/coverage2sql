@@ -1,0 +1,6 @@
+---
+upgrade:
+  - |
+    Python 2.7 support has been dropped. Last release of coverage2sql
+    to support py2.7 is OpenStack Train. The minimum version of Python now
+    supported by coverage2sql is Python 3.6.
