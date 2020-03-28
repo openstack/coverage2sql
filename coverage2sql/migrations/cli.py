@@ -164,6 +164,7 @@ def add_command_parsers(subparsers):
                              "expiration point")
     parser.set_defaults(func=expire_old)
 
+
 command_opt = cfg.SubCommandOpt('command',
                                 title='Command',
                                 help='Available commands',
@@ -182,6 +183,7 @@ def main():
     CONF()
     db_api.get_session()
     CONF.command.func(config, CONF.command.name)
+
 
 if __name__ == "__main__":
     sys.exit(main())
