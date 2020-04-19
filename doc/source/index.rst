@@ -15,13 +15,18 @@ if your coverage rate is down.
 * Documentation: https://docs.openstack.org/coverage2sql/latest/
 * Source: https://opendev.org/openstack/coverage2sql
 * Bugs: https://bugs.launchpad.net/coverage2sql
+* Contributing: If you are a new contributor to coverage2sql please refer: :doc:`contributor/contributing`
 
 .. toctree::
    :maxdepth: 2
 
    install/index
    user/index
-   contributor/index
+
+.. toctree::
+   :hidden:
+
+   contributor/contributing
 
 Indices and tables
 ==================
