@@ -49,8 +49,8 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Coverage2sql Release Notes'
-copyright = u'2016, Coverage2sql Developers'
+project = 'Coverage2sql Release Notes'
+copyright = '2016, Coverage2sql Developers'
 
 # Release notes do not need a version in the title, they span
 # multiple versions.
@@ -197,8 +197,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'Coverage2sqlReleaseNotes.tex', u'Coverage2sql Release Notes '
-   'Documentation',  u'Coverage2sql Developers', 'manual'),
+  ('index', 'Coverage2sqlReleaseNotes.tex', 'Coverage2sql Release Notes '
+   'Documentation',  'Coverage2sql Developers', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -227,8 +227,8 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'novareleasenotes', u'Coverage2sql Release Notes Documentation',
-     [u'Coverage2sql developers'], 1)
+    ('index', 'novareleasenotes', 'Coverage2sql Release Notes Documentation',
+     ['Coverage2sql developers'], 1)
 ]
 
 # If true, show URL addresses after external links.
@@ -241,8 +241,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'Coverage2sqlReleaseNotes', u'Coverage2sql Release Notes Documentation',
-   u'Coverage2sql developers', 'Coverage2sqlReleaseNotes', 'One line description of project.',
+  ('index', 'Coverage2sqlReleaseNotes', 'Coverage2sql Release Notes Documentation',
+   'Coverage2sql developers', 'Coverage2sqlReleaseNotes', 'One line description of project.',
    'Miscellaneous'),
 ]
 
