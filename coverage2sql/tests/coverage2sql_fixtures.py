@@ -21,7 +21,7 @@ from oslo_concurrency.fixture import lockutils as lock_fixture
 from oslo_concurrency import lockutils
 from oslo_config import cfg
 from oslo_config import fixture as config_fixture
-from six.moves.urllib import parse as urlparse
+from urllib import parse as urlparse
 
 from coverage2sql.db import api as db_api
 from coverage2sql.migrations import cli
