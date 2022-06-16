@@ -1,0 +1,5 @@
+---
+upgrade:
+  - |
+    Python 3.6 and 3.7 support has been dropped. The minimum version
+    of Python now supported by coverage2sql is Python 3.8.
