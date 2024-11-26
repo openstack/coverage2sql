@@ -6,12 +6,14 @@
     check:
       jobs:
         - openstack-tox-pep8
-        - openstack-tox-py38
         - openstack-tox-py39
         - openstack-tox-py310
+        - openstack-tox-py311
+        - openstack-tox-py312
     gate:
       jobs:
         - openstack-tox-pep8
-        - openstack-tox-py38
         - openstack-tox-py39
         - openstack-tox-py310
+        - openstack-tox-py311
+        - openstack-tox-py312
