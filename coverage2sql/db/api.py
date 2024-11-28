@@ -49,16 +49,14 @@ def setup():
     Session = sessionmaker(bind=engine)
 
 
-def get_session(autocommit=True, expire_on_commit=False):
+def get_session(expire_on_commit=False):
     """Get a new sqlalchemy Session instance
 
-    :param bool autocommit: Enable autocommit mode for the session.
     :param bool expire_on_commit: Expire the session on commit defaults False.
     """
     global Session
     setup()
-    session = Session(autocommit=autocommit,
-                      expire_on_commit=expire_on_commit)
+    session = Session(expire_on_commit=expire_on_commit)
 
     # if --verbose was specified, turn on SQL logging
     # note that this is done after the session has been initialized so that
